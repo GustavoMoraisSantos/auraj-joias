@@ -50,7 +50,7 @@ const App: React.FC = () => {
           className="site-layout-content"
           style={{ background: "red", height: "100%" }}
         >
-          Content heheasdad
+          Content washington
         </div>
       </Content>
       <Footer style={{ textAlign: "center", background: "blue" }}>
