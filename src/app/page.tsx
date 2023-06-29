@@ -53,7 +53,7 @@ const App: React.FC = () => {
           Content washington
         </div>
       </Content>
-      <Footer style={{ textAlign: "center", background: "blue" }}>
+      <Footer style={{ textAlign: "center", background: "yellow" }}>
         Ant Design ©2023 Created by Ant UED
       </Footer>
     </Layout>
