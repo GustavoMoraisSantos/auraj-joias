@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import NewCategoryModal from "@/components/categories/NewCategoryModal";
+import CategoriesTable from "@/components/categories/CategoriesTable";
 
 const { Header, Content, Footer } = Layout;
 
@@ -23,9 +25,6 @@ const App: React.FC = () => {
       title: "An Application",
     },
   ];
-  // <Breadcrumb.Item>Home</Breadcrumb.Item>
-  //         <Breadcrumb.Item>List</Breadcrumb.Item>
-  //         <Breadcrumb.Item>App</Breadcrumb.Item>
 
   return (
     <Layout className="layout" style={{ height: "100vh" }}>
@@ -46,15 +45,14 @@ const App: React.FC = () => {
       </Header>
       <Content style={{ padding: "0 50px", height: "100vh" }}>
         <Breadcrumb items={items} style={{ margin: "16px 0" }}></Breadcrumb>
-        <div
-          className="site-layout-content"
-          style={{ background: "red", height: "100%" }}
-        >
-          Content washington
+        <div className="site-layout-content" style={{ height: "100%" }}>
+          <CategoriesTable />
         </div>
       </Content>
-      <Footer style={{ textAlign: "center", background: "blue" }}>
-        Ant Design ©2023 Created by Ant UED
+      <Footer
+        style={{ textAlign: "center", background: "black", color: "white" }}
+      >
+        Auraj Joias ©2023
       </Footer>
     </Layout>
   );
