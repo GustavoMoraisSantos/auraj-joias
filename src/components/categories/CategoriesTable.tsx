@@ -1,9 +1,10 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Row, Space, Table, Tag } from "antd";
 import space from "antd/es/space";
-import { ColumnsType } from "antd/es/table";
+import { ColumnsType, TablePaginationConfig } from "antd/es/table";
 import NewCategoryModal from "./NewCategoryModal";
 import { useState } from "react";
+import { config } from "process";
 
 interface DataType {
   key: string;
@@ -12,8 +13,6 @@ interface DataType {
 }
 
 const CategoriesTable = () => {
-  const [visibleCategoryModal, setVisibleCategoryModal] = useState(false);
-
   const columns: ColumnsType<DataType> = [
     {
       title: "Nome da categoria",
@@ -61,17 +60,10 @@ const CategoriesTable = () => {
 
   return (
     <>
-      <Row justify={"space-between"}>
-        <h1>Listagem de categoria</h1>
-
-        <Button onClick={() => setVisibleCategoryModal(true)} type="primary">
-          Criar nova categoria
-        </Button>
-      </Row>
-      <Table columns={columns} dataSource={data} />
-      <NewCategoryModal
-        visibleCategoryModal={visibleCategoryModal}
-        setVisibleCategoryModal={setVisibleCategoryModal}
+      <Table
+        columns={columns}
+        pagination={{ position: ["bottomCenter"] }}
+        dataSource={data}
       />
     </>
   );
