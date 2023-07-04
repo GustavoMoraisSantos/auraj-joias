@@ -12,7 +12,7 @@ const CategoriesPage = () => {
       <Row justify={"space-between"}>
         <h1>Listagem de categoria</h1>
         <Button onClick={() => setVisibleCategoryModal(true)} type="primary">
-          Criar nova categoria
+          Incluir nova categoria
         </Button>
         <NewCategoryModal
           visibleCategoryModal={visibleCategoryModal}
