@@ -3,13 +3,25 @@ import { Button, Col, Form, Input, Modal, Row } from "antd";
 const NewCategoryModal = ({
   visibleCategoryModal,
   setVisibleCategoryModal,
+  setCategories,
+  categories,
 }: {
   visibleCategoryModal: boolean;
   setVisibleCategoryModal: any;
+  setCategories: any;
+  categories: any;
 }) => {
   const handleCancel = () => {
     setVisibleCategoryModal(false);
   };
+
+  const handleSubmit = (values: { name: string; _id: string }) => {
+    values._id = Math.random().toString(36).substring(2, 9);
+    const updatedCategories = [...categories, values];
+    console.log(updatedCategories);
+    setCategories(updatedCategories);
+  };
+
   return (
     <>
       <Modal
@@ -28,6 +40,7 @@ const NewCategoryModal = ({
               initialValues={{ remember: true }}
               onFinish={(values) => {
                 console.log("Finalizou o formulário ", values);
+                handleSubmit(values);
                 handleCancel();
               }}
               onFinishFailed={(values) =>

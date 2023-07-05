@@ -1,31 +1,21 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Breadcrumb, Layout, Menu, MenuProps } from "antd";
 import {
   PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
   TagsOutlined,
   InboxOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import MenuItem from "antd/es/menu/MenuItem";
-import style from "antd/es/alert/style";
 import { useRouter } from "next/navigation";
+import "./style.scss";
 
 const { Header, Content, Footer } = Layout;
 type MenuItem = Required<MenuProps>["items"][number];
 
 const LayoutDefault: React.FC = ({ children }: any) => {
   const router = useRouter();
-  // useEffect(() => {
-  //   // Always do navigations after the first render
-  //   router.push("/");
-  // }, []);
-  // useEffect(() => {
-  //   // The counter changed!
-  //   console.log("e");
-  // }, [router.query.counter]);
 
   function getItem(
     label: React.ReactNode,
@@ -55,13 +45,16 @@ const LayoutDefault: React.FC = ({ children }: any) => {
 
   return (
     <Layout className="layout" style={{ height: "100vh" }}>
-      <Header style={{ display: "flex", alignItems: "center" }}>
+      <Header
+        style={{ display: "flex", alignItems: "center", background: "	#000000" }}
+      >
         <div className="demo-logo" />
         <Menu
+          className="menu-custom"
           onClick={(e) => {
             handleChangeItem(e.key);
           }}
-          style={{ width: "100%" }}
+          style={{ width: "100%", background: "#000000" }}
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={["dashboard"]}
@@ -81,7 +74,7 @@ const LayoutDefault: React.FC = ({ children }: any) => {
         </div>
       </Content>
       <Footer
-        style={{ textAlign: "center", background: "black", color: "white" }}
+        style={{ textAlign: "center", background: "	#000000", color: "white" }}
       >
         Auraj Joias ©2023
       </Footer>

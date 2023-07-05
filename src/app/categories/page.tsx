@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const CategoriesPage = () => {
   const [visibleCategoryModal, setVisibleCategoryModal] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   return (
     <>
@@ -15,12 +16,17 @@ const CategoriesPage = () => {
           Incluir nova categoria
         </Button>
         <NewCategoryModal
+          setCategories={setCategories}
+          categories={categories}
           visibleCategoryModal={visibleCategoryModal}
           setVisibleCategoryModal={setVisibleCategoryModal}
         />
       </Row>
       <div style={{ marginTop: "16px" }}>
-        <CategoriesTable />
+        <CategoriesTable
+          setCategories={setCategories}
+          dataSource={categories}
+        />
       </div>
     </>
   );
