@@ -1,29 +1,28 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Row, Space, Table, Tag } from "antd";
-import space from "antd/es/space";
-import { ColumnsType, TablePaginationConfig } from "antd/es/table";
-import NewCategoryModal from "./NewCategoryModal";
-import { useState } from "react";
-import { config } from "process";
+import { Space, Table } from "antd";
+import { ColumnsType } from "antd/es/table";
 
 interface DataType {
   key: string;
   name: string;
-  status: string;
+}
+interface IPros {
+  setCategories: any;
+  dataSource: any;
 }
 
-const CategoriesTable = () => {
+const CategoriesTable = ({ setCategories, dataSource }: IPros) => {
+  const handleDeleteItem = (record: any) => {
+    const updatedData = dataSource.filter(
+      (item: any) => item._id !== record._id
+    );
+    setCategories(updatedData);
+  };
   const columns: ColumnsType<DataType> = [
     {
       title: "Nome da categoria",
       dataIndex: "name",
       key: "name",
-      // render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "status ",
-      dataIndex: "status",
-      key: "status",
     },
     {
       title: "Ações",
@@ -33,30 +32,14 @@ const CategoriesTable = () => {
           <EditOutlined onClick={() => console.log("EDITOU")} />
           <DeleteOutlined
             style={{ color: "red" }}
-            onClick={() => console.log("REMOVEU")}
+            onClick={() => handleDeleteItem(record)}
           />
         </Space>
       ),
     },
   ];
 
-  const data: DataType[] = [
-    {
-      key: "1",
-      name: "Alianças",
-      status: "Ativo",
-    },
-    {
-      key: "2",
-      name: "Colares",
-      status: "Inativo",
-    },
-    {
-      key: "3",
-      name: "Anéis",
-      status: "Ativo",
-    },
-  ];
+  const data: DataType[] = dataSource;
 
   return (
     <>
