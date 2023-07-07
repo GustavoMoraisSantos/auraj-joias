@@ -3,13 +3,25 @@ import { Button, Col, Form, Input, Modal, Row } from "antd";
 const NewSuppliersModal = ({
   visibleSuppliersModal,
   setVisibleSuppliersModal,
+  setSuppliers,
+  suppliers,
 }: {
   visibleSuppliersModal: boolean;
   setVisibleSuppliersModal: any;
+  setSuppliers: any;
+  suppliers: any;
 }) => {
   const handleCancel = () => {
     setVisibleSuppliersModal(false);
   };
+
+  const handleSubmit = (values: { name: string; _id: string }) => {
+    values._id = Math.random().toString(36).substring(2, 9);
+    const updatedSuppliers = [...suppliers, values];
+    console.log(updatedSuppliers);
+    setSuppliers(updatedSuppliers);
+  };
+
   return (
     <>
       <Modal
@@ -28,6 +40,7 @@ const NewSuppliersModal = ({
               initialValues={{ remember: true }}
               onFinish={(values) => {
                 console.log("Finalizou o formulário ", values);
+                handleSubmit(values);
                 handleCancel();
               }}
               onFinishFailed={(values) =>

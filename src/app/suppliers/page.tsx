@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const SuppliersPage = () => {
   const [visibleSuppliersModal, setVisibleSuppliersModal] = useState(false);
+  const [suppliers, setSuppliers] = useState([]); 
 
   return (
     <>
@@ -15,12 +16,17 @@ const SuppliersPage = () => {
           Incluir novo fornecedor
         </Button>
         <NewSuppliersModal
+          setSuppliers={setSuppliers}
+          suppliers={suppliers}
           visibleSuppliersModal={visibleSuppliersModal}
           setVisibleSuppliersModal={setVisibleSuppliersModal}
         />
       </Row>
       <div style={{ marginTop: "16px" }}>
-        <SuppliersTable />
+        <SuppliersTable
+            setSuppliers={setSuppliers}
+            dataSource={suppliers}
+        />
       </div>
     </>
   );
