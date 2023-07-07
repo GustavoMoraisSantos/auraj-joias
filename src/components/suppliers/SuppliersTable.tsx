@@ -1,29 +1,28 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Row, Space, Table, Tag } from "antd";
-import space from "antd/es/space";
-import { ColumnsType, TablePaginationConfig } from "antd/es/table";
-import NewSuppliersModal from "./NewSuppliersModal";
-import { useState } from "react";
-import { config } from "process";
+import { Space, Table } from "antd";
+import { ColumnsType } from "antd/es/table";
 
 interface DataType {
   key: string;
   name: string;
-  status: string;
+}
+interface IPros {
+  setSuppliers: any;
+  dataSource: any;
 }
 
-const SuppliersTable = () => {
+const SuppliersTable = ({ setSuppliers, dataSource }: IPros) => {
+  const handleDeleteItem = (record: any) => {
+    const updatedData = dataSource.filter(
+      (item: any) => item._id !== record._id
+    );
+    setSuppliers(updatedData);
+  };
   const columns: ColumnsType<DataType> = [
     {
       title: "Nome do fornecedor",
       dataIndex: "name",
       key: "name",
-      // render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "status ",
-      dataIndex: "status",
-      key: "status",
     },
     {
       title: "Ações",
@@ -33,30 +32,14 @@ const SuppliersTable = () => {
           <EditOutlined onClick={() => console.log("EDITOU")} />
           <DeleteOutlined
             style={{ color: "red" }}
-            onClick={() => console.log("REMOVEU")}
+            onClick={() => handleDeleteItem(record)}
           />
         </Space>
       ),
     },
   ];
 
-  const data: DataType[] = [
-    {
-      key: "1",
-      name: "Bourboun joias",
-      status: "Ativo",
-    },
-    {
-      key: "2",
-      name: "Joias Baccule",
-      status: "Ativo",
-    },
-    {
-      key: "3",
-      name: "Pandora",
-      status: "Inativo",
-    },
-  ];
+  const data: DataType[] = dataSource;
 
   return (
     <>
@@ -70,3 +53,4 @@ const SuppliersTable = () => {
 };
 
 export default SuppliersTable;
+
